@@ -1,5 +1,5 @@
 class ErequestsController < ApplicationController
-  #before_action :set_todo, only: [:show, :update, :destroy]
+  before_action :set_erequest, only: [:show, :update, :destroy]
     # GET /erequests
   def index
     @erequests = Erequest.all
@@ -20,13 +20,13 @@ class ErequestsController < ApplicationController
   # PUT /erequests/:id
   def update
     @erequest.update(erequest_params)
-    json_response(status: 'SUCCESS', message: 'updated the erequest', data: @erequest.title)
+    json_response(status: 'SUCCESS', message: 'updated the erequest')
   end
 
   # DELETE /erequests/:id
   def destroy
     @erequest.destroy
-    json_response(status: 'SUCCESS', message: 'deleted the erequest', data: @erequest.title)
+    json_response(status: 'SUCCESS', message: 'deleted the erequest')
 
   end
 
