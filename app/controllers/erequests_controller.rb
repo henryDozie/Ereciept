@@ -1,5 +1,6 @@
 class ErequestsController < ApplicationController
   before_action :set_erequest, only: [:show, :update, :destroy]
+
     # GET /erequests
   def index
     @erequests = Erequest.all
@@ -20,13 +21,13 @@ class ErequestsController < ApplicationController
   # PUT /erequests/:id
   def update
     @erequest.update(erequest_params)
-    json_response(status: 'SUCCESS', message: 'updated the erequest')
+    json_response(status: 'SUCCESS', message: 'updated the erequest', data: @erequest.title)
   end
 
   # DELETE /erequests/:id
   def destroy
     @erequest.destroy
-    json_response(status: 'SUCCESS', message: 'deleted the erequest')
+    json_response(status: 'SUCCESS', message: 'deleted the erequest', data: @erequest.title)
 
   end
 
@@ -34,10 +35,11 @@ class ErequestsController < ApplicationController
 
   def erequest_params
     # whitelist params
-    params.permit(:title, :created_by)
+    params.permit(:title, :created_by, :request, :requestID, :requestType)
   end
 
   def set_erequest
     @erequest = Erequest.find(params[:id])
   end
+
 end
