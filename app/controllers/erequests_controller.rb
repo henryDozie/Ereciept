@@ -11,6 +11,7 @@ class ErequestsController < ApplicationController
   def create
     @erequest = Erequest.create!(erequest_params)
     json_response(@erequest, :created)
+    UserMailer.with(user: @user).welcome_email.deliver
   end
 
   # GET /erequests/:id
